@@ -1,6 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
-static const wchar_t *fontname         = L"Fira Code";
+static const wchar_t *fontname         = L"Consolas";
 static const unsigned int fontsize  = 20;
 
 /* appearance, colors are specified in the form 0x00bbggrr or with the RGB(r, g, b) macro */
