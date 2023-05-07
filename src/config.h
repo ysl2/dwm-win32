@@ -46,6 +46,7 @@ static Rule rules[] = {
     { NULL,                                  NULL,                  L"Spyglass.exe",    0,          true,           true }, /* https://github.com/a5huynh/spyglass */
     { L"TaskManagerWindow",                  NULL,                  NULL,               0,          true,           true },
     { L"ImagePreviewWnd",                    NULL,                  NULL,               0,          true,          false },
+    { NULL,                                  L"ToDesk",             NULL,               0,          true,          false },
 };
 
 /* layout(s) */
