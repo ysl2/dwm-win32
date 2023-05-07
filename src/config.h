@@ -47,6 +47,8 @@ static Rule rules[] = {
     { L"TaskManagerWindow",                  NULL,                  NULL,               0,          true,           true },
     { L"ImagePreviewWnd",                    NULL,                  NULL,               0,          true,          false },
     { NULL,                                  L"ToDesk",             NULL,               0,          true,          false },
+    // NativeHWNDHost, 粘滞键, EaseOfAccessDialog.exe
+    { NULL,                                  L"粘滞键",             NULL,               0,          true,          false },
 };
 
 /* layout(s) */
