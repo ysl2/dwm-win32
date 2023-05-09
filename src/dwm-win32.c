@@ -1532,7 +1532,7 @@ writelog(const Arg *arg) {
     fprintf(fout, "curtag: %d\n", curtag);
     fprintf(fout, "seltags: %d\n", seltags);
 
-    fprintf(fout, "hwnd, parent, tag, visible, classname, title\n");
+    fprintf(fout, "hwnd, parent, tag, visible, classname, title, ignoreborder\n");
 
     for (c = clients; c; c = c->next) {
         fprintf(fout, "%d,", c->hwnd);
@@ -1542,6 +1542,8 @@ writelog(const Arg *arg) {
         fwprintf(fout, getclientclassname(c->hwnd));
         fprintf(fout, ",");
         fwprintf(fout, getclienttitle(c->hwnd));
+        fprintf(fout, ",");
+        fprintf(fout, "%d", c->ignoreborder);
         fprintf(fout, "\n");
     }
 
