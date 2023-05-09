@@ -199,6 +199,7 @@ static void updategeom(void);
 static void view(const Arg *arg);
 static void zoom(const Arg *arg);
 static bool iscloaked(HWND hwnd);
+static void wipetag(const Arg *arg);
 
 typedef BOOL (*RegisterShellHookWindowProc) (HWND);
 
@@ -1528,6 +1529,9 @@ writelog(const Arg *arg) {
     fout = fopen("dwm-win32.log", "w");
     if (fout == NULL) return;
 
+    fprintf(fout, "curtag: %d\n", curtag);
+    fprintf(fout, "seltags: %d\n", seltags);
+
     fprintf(fout, "hwnd, parent, tag, visible, classname, title\n");
 
     for (c = clients; c; c = c->next) {
@@ -1699,6 +1703,31 @@ forcearrange(const Arg *arg) {
     arrange();
 }
 
+void
+wipetag(const Arg *arg) {
+    Client *temphead;
+    Client *c;
+    Client *pre;
+
+    temphead = malloc(sizeof(Client));
+    temphead->next = clients;
+
+    c = temphead->next;
+    pre = temphead;
+
+    while (c) {
+        if (c->tags & 1 << (curtag - 1)) {
+            pre->next = c->next;
+            pre->snext = c->snext;
+            PostMessage(c->hwnd, WM_CLOSE, 0, 0);
+            // free(c);  // Don't do this, otherwise dwm will stuck and exit.
+        }
+        c = pre->next;
+        pre = pre->next;
+    }
+
+    free(temphead);
+}
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nShowCmd) {
 	SetProcessDPIAware();

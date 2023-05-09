@@ -45,10 +45,11 @@ static Rule rules[] = {
     { NULL,                                  L"vimrun.exe",         NULL,               0,          true,           true },
     { NULL,                                  NULL,                  L"Spyglass.exe",    0,          true,           true }, /* https://github.com/a5huynh/spyglass */
     { L"TaskManagerWindow",                  NULL,                  NULL,               0,          true,           true },
-    { L"ImagePreviewWnd",                    NULL,                  NULL,               0,          true,          false },
-    { NULL,                                  L"ToDesk",             NULL,               0,          true,          false },
+    { L"ImagePreviewWnd",                    NULL,                  NULL,               0,          true,           true },
+    { NULL,                                  L"ToDesk",             NULL,               0,          true,           true },
     // NativeHWNDHost, 粘滞键, EaseOfAccessDialog.exe
-    { NULL,                                  L"粘滞键",             NULL,               0,          true,          false },
+    { NULL,                                  L"粘滞键",             NULL,               0,          true,           true },
+    { L"CefWebViewWnd",                      NULL,                  NULL,               0,          true,           true },
 };
 
 /* layout(s) */
@@ -97,13 +98,14 @@ static Key keys[] = {
     { MODKEY,                       'K',       focusstack,          {.i = -1 } },
     { MODKEY|MOD_SHIFT,             'J',       movestack,           {.i = +1 } },
     { MODKEY|MOD_SHIFT,             'K',       movestack,           {.i = -1 } },
-    { MODKEY|MOD_SHIFT,             'A',       forcearrange,        {.i = -1 } },
+    { MODKEY|MOD_SHIFT,             'A',       forcearrange,        {0} },
     { MODKEY,                       'H',       setmfact,            {.f = -0.05} },
     { MODKEY,                       'L',       setmfact,            {.f = +0.05} },
     { MODKEY,                       'I',       showclientinfo,      {0} },
     { MODKEY|MOD_CONTROL,           VK_RETURN, zoom,                {0} },
     { MODKEY,                       VK_TAB,    view,                {0} },
     { MODKEY|MOD_SHIFT,             'C',       killclient,          {0} },
+    { MODKEY|MOD_CONTROL|MOD_SHIFT, 'C',       wipetag,             {0} },
     { MODKEY,                       'T',       setlayout,           {.v = &layouts[0]} },
     { MODKEY,                       'F',       setlayout,           {.v = &layouts[1]} },
     { MODKEY,                       'M',       setlayout,           {.v = &layouts[2]} },
