@@ -51,8 +51,10 @@ static Rule rules[] = {
     // NativeHWNDHost, 粘滞键, EaseOfAccessDialog.exe
     { NULL,                                  L"粘滞键",             NULL,               0,          true,           true },
     { L"CefWebViewWnd",                      NULL,                  NULL,               0,          true,           true },
-    { NULL,                                  L"钉钉升级程序",       "DingTalk.exe",     0,          true,           true },
-    { L"WorkbenchFrame",                     NULL,                  "DingTalk.exe",     0,          true,           true },
+    { NULL,                                  L"钉钉升级程序",       NULL,               0,          true,           true },
+    { L"WorkbenchFrame",                     NULL,                  NULL,               0,          true,           true },
+    // ApplicationFrameWindow, Caculator, ApplicationFrameHost.exe
+    { NULL,                                  L"Calculator",          NULL,               0,          true,           true },
 };
 
 /* layout(s) */
