@@ -1395,6 +1395,8 @@ tag(const Arg *arg) {
         }
         debug(L"window tagged finished\n");
         arrange();
+ 		if(viewontag && ((arg->ui & TAGMASK) != TAGMASK))
+ 			view(arg);
     }
 }
 
