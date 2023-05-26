@@ -56,6 +56,7 @@ static Rule rules[] = {
     // ApplicationFrameWindow, Caculator, ApplicationFrameHost.exe
     { NULL,                                  L"Calculator",         NULL,               0,          true,           true },
     { NULL,                                  L"加入会议",           NULL,               0,          true,           true },
+    { NULL,                                  NULL,                  L"C:\\Program Files\\WinRAR\\WinRAR.exe",      0,          true,           true },
 };
 
 /* layout(s) */
