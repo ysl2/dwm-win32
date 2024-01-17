@@ -208,7 +208,7 @@ static HWINEVENTHOOK wineventhook;
 static HFONT font;
 static wchar_t stext[256];
 static int sx, sy, sw, sh; /* X display screen geometry x, y, width, height */
-static int by, bh, blw;    /* bar geometry y, height and layout symbol width */
+static int bx, by, bh, blw;    /* bar geometry x, y, height and layout symbol width */
 static int wx, wy, ww, wh; /* window area geometry x, y, width, height, bar excluded */
 static unsigned int seltags, sellt;
 
@@ -430,9 +430,9 @@ drawbar(void) {
             gmtime_s(&date, &timer);
             wcsftime(utctimestr, 255, clockfmt, &date);
 
-            swprintf(timestr, sizeof(timestr), L"%s | UTC: %s", localtimestr, utctimestr);
+            swprintf(timestr, sizeof(timestr), L"%ls | UTC: %ls", localtimestr, utctimestr);
         } else {
-            swprintf(timestr, sizeof(localtimestr), L"%s", localtimestr);
+            swprintf(timestr, sizeof(localtimestr), L"%ls", localtimestr);
         }
 
         dc.w = TEXTW(timestr);
@@ -1569,7 +1569,7 @@ unmanage(Client *c) {
 
 void
 updatebar(void) {
-    SetWindowPos(barhwnd, showbar ? HWND_TOPMOST : HWND_NOTOPMOST, 0, by, ww, bh, (showbar ? SWP_SHOWWINDOW : SWP_HIDEWINDOW) | SWP_NOACTIVATE | SWP_NOSENDCHANGING);
+    SetWindowPos(barhwnd, showbar ? HWND_TOPMOST : HWND_NOTOPMOST, bx, by, ww, bh, (showbar ? SWP_SHOWWINDOW : SWP_HIDEWINDOW) | SWP_NOACTIVATE | SWP_NOSENDCHANGING);
 }
 
 void
@@ -1592,6 +1592,7 @@ updategeom(void) {
         sh = GetSystemMetrics(SM_CYVIRTUALSCREEN);
     }
 
+    bx = sx;
     bh = 20; /* XXX: fixed value */
 
     /* window area geometry */
