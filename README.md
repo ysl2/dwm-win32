@@ -1,3 +1,11 @@
+# ![](dwm.png)-win32
+
+```
+# NOTE: You should open the `Developer Mode` item in Windows `Settings -> Update & Security -> Developer
+# That's because there is a symlink in this repo, if we don't open the developer mode, the symlink will be reported as error.
+git clone git@github.com:ysl2/dwm-win32.git
+```
+
 dwm-win32 is a port of the well known X11 window manager dwm to Microsoft
 Windows.
 
@@ -24,7 +32,7 @@ Windows are grouped by tags. Each window can be tagged with one or
 multiple tags. Selecting certain tags displays all windows with these
 tags.
 
-dwm contains a small status bar which displays all available tags, the 
+dwm contains a small status bar which displays all available tags, the
 layout and the title of the focused window. A floating window is indicated
 with an empty square and a maximised floating window is indicated with a
 filled square before the windows title. The selected tags are indicated
@@ -119,14 +127,14 @@ A ShellHook is registered which is notified upon window creation and
 destruction, however it is important to know that this only works for
 unowned top level windows. This means we will not get notified when child
 windows are created/destroyed. Therefore we scan the currently active top
-level window upon activation to collect all associated child windows. 
-This information is for example used to tag all windows and not just 
+level window upon activation to collect all associated child windows.
+This information is for example used to tag all windows and not just
 the toplevel one when tag changes occur.
 
 This is all kind of messy and we might miss some child windows in certain
-situations. A better approach would probably be to introduce a CBTProc 
+situations. A better approach would probably be to introduce a CBTProc
 function and register it with SetWindowsHookEx(WH_CBT, ...) with this we
-would get notified by all and every windows including toolbars etc. 
+would get notified by all and every windows including toolbars etc.
 which we would have to filter out.
 
 Unfortunately the SetWindowsHookEx thingy seems to require a separate
@@ -171,6 +179,6 @@ TODO
 
  [ - introduce a CBTProc function and register it with
      SetWindowsHookEx(WH_CBT, ...) to handle window events instead of the
-     current mechanism in WndProc which is based on the shellhookid and 
+     current mechanism in WndProc which is based on the shellhookid and
      WH_SHELL because this only works for toplevel windows. See also the
      "How it works" section. ]
