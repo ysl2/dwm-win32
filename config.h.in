@@ -1,6 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
-static const wchar_t *fontname         = L"Fira Code";
+static const wchar_t *fontname         = L"Consolas";
 static const unsigned int fontsize  = 20;
 
 /* appearance, colors are specified in the form 0x00bbggrr or with the RGB(r, g, b) macro */
@@ -15,8 +15,9 @@ static const unsigned int borderpx    = 0;        /* border pixel of windows */
 static const unsigned int textmargin  = 15;       /* margin for the text displayed on the bar */
 static bool showbar                   = true;     /* false means no bar */
 static bool topbar                    = true;     /* false means bottom bar */
+static bool viewontag                 = true;     /* Switch view on tag switch */
 static bool showclock                 = true;     /* false means no clock */
-static bool showutcclock              = true;     /* false means no utc clock */
+static bool showutcclock              = false;    /* false means no utc clock */
 static bool showexploreronstart       = false;    /* false means do not show explorer/task bar on start */
 
 /* tagging */
@@ -43,8 +44,20 @@ static Rule rules[] = {
     { L"Chrome_WidgetWin_1",                 L"Google Chrome",      NULL,               0,          false,          true },
     { L"Chrome_WidgetWin_1",                 L"Visual Studio Code", NULL,               0,          false,          true },
     { NULL,                                  L"vimrun.exe",         NULL,               0,          true,           true },
-    { NULL,                                  NULL,                  L"Spyglass.exe",               0,          true,           true }, /* https://github.com/a5huynh/spyglass */
+    { NULL,                                  NULL,                  L"Spyglass.exe",    0,          true,           true }, /* https://github.com/a5huynh/spyglass */
     { L"TaskManagerWindow",                  NULL,                  NULL,               0,          true,           true },
+    { L"ImagePreviewWnd",                    NULL,                  NULL,               0,          true,           true },
+    { NULL,                                  L"ToDesk",             NULL,               0,          true,           true },
+    // NativeHWNDHost, 粘滞键, EaseOfAccessDialog.exe
+    { NULL,                                  L"粘滞键",             NULL,               0,          true,           true },
+    { L"CefWebViewWnd",                      NULL,                  NULL,               0,          true,           true },
+    { NULL,                                  L"钉钉升级程序",       NULL,               0,          true,           true },
+    { L"WorkbenchFrame",                     NULL,                  NULL,               0,          true,           true },
+    // ApplicationFrameWindow, Caculator, ApplicationFrameHost.exe
+    { NULL,                                  L"Calculator",         NULL,               0,          true,           true },
+    { NULL,                                  L"加入会议",           NULL,               0,          true,           true },
+    { NULL,                                  NULL,                  L"C:\\Program Files\\WinRAR\\WinRAR.exe",      0,          true,           true },
+    { NULL,                                  L"安装",               NULL,               0,          true,           true },
 };
 
 /* layout(s) */
@@ -100,6 +113,7 @@ static Key keys[] = {
     { MODKEY|MOD_CONTROL,           VK_RETURN, zoom,                {0} },
     { MODKEY,                       VK_TAB,    view,                {0} },
     { MODKEY|MOD_SHIFT,             'C',       killclient,          {0} },
+    { MODKEY|MOD_CONTROL|MOD_SHIFT, 'C',       wipetag,             {0} },
     { MODKEY,                       'T',       setlayout,           {.v = &layouts[0]} },
     { MODKEY,                       'F',       setlayout,           {.v = &layouts[1]} },
     { MODKEY,                       'M',       setlayout,           {.v = &layouts[2]} },
