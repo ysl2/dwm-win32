@@ -138,7 +138,7 @@ static Key keys[] = {
     TAGKEYS(                        '7',                            6)
     TAGKEYS(                        '8',                            7)
     TAGKEYS(                        '9',                            8)
-    { MODKEY|MOD_CONTROL,           'Q',       quit,                {0} },
+    { MODKEY|MOD_SHIFT,             'Q',       quit,                {0} },
 };
 
 
